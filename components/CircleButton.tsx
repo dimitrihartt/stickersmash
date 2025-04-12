@@ -1,35 +1,36 @@
-import { View, Pressable, StyleSheet } from "react-native";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { styled } from "@gluestack-style/react";
+import { Pressable, View } from "@gluestack-ui/themed";
+import { MaterialIcons } from "@expo/vector-icons";
 
 type Props = {
   onPress: () => void;
 };
 
+// Styled components using gluestack
+const CircleButtonContainer = styled(View, {
+  width: 84,
+  height: 84,
+  marginHorizontal: 60,
+  borderWidth: 4,
+  borderColor: "#ffd33d",
+  borderRadius: 9999,
+  padding: 3,
+});
+
+const CircleButtonInner = styled(Pressable, {
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  borderRadius: 9999,
+  backgroundColor: "#fff",
+});
+
 export default function CircleButton({ onPress }: Props) {
   return (
-    <View style={styles.circleButtonContainer}>
-      <Pressable style={styles.circleButton} onPress={onPress}>
+    <CircleButtonContainer>
+      <CircleButtonInner onPress={onPress}>
         <MaterialIcons name="add" size={38} color="#25292e" />
-      </Pressable>
-    </View>
+      </CircleButtonInner>
+    </CircleButtonContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  circleButtonContainer: {
-    width: 84,
-    height: 84,
-    marginHorizontal: 60,
-    borderWidth: 4,
-    borderColor: "#ffd33d",
-    borderRadius: 42,
-    padding: 3,
-  },
-  circleButton: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 42,
-    backgroundColor: "#fff",
-  },
-});
